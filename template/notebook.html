@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Codemong</title>
+    <link href='/static/node.css' rel='stylesheet' type='text/css' />
+    <!-- // <script src='http://code.jquery.com/jquery-latest.js'></script> -->
+    <!-- // <script src='http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js'></script> -->
+    <!-- // <script src='http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js'></script> -->
+    <!-- // <script src='/static/showdown.js'></script> -->
+    <!-- // <script src='/static/ace/ace.js'></script> -->
+    <!-- // <script src='/static/ace/mode-python.js'></script> -->
+    <!-- // <script src='/static/ace-events.js'></script> -->
+    <!-- // <script src='/static/node.js'></script> -->
+    <script type='text/x-mathjax-config'>
+      MathJax.Hub.Config({
+        // skipStartupTypeset: true,
+        messageStyle: "simple",
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+      });
+    </script>
+    <script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+  </head>
+  <body>
+    <div id='app'>
+      <div id='navbar'>
+        <div id='logo'></div>
+        <div id='title'>{{title}}</div>
+        <div id='controls'>
+          <input value="Edit" type="button" onclick="window.location.href='/static/index.html#notebook/{{id}}'; " >
+        </div>
+      </div>
+      <div id="app">
+      <div id='notebook'>
+        {% for cell in cells %}
+          <div class="cell-io">
+            <div class="cell">
+              {% if cell['mode'] == 'code' %}
+                <div class="ace-container"><pre><code>{{ cell['input'] }}</code></pre></div>
+              {% end %}
+              <div class="output">{{ cell['output'] }}</div>
+            </div>
+          </div>
+        {% end %}
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+Installation
+============
+
+Requires: 
+* cyclone: https://github.com/fiorix/cyclone
+* txmongo: https://github.com/fiorix/mongo-async-python-driver
+* pymongo
+* twisted
+
+Optional:
+* matplotlib (for plotting)
+ 
+Database
+========
+MongoDB running locally, please.  See cyc.tac/WebMongo if you want change that.
+Uses the database codenode_dev by default.
+
+Run the script load_samples.py to load a set of demo data.  
+
+Running
+=======
+
+Run the twisted tac file with: 
+
+    twistd -ny cyc.tac
+    
+Now open a browser at http://localhost:8888/ and try the tutorial.  You need
+to click on "Tutorial" in the list of notebooks and then click *Edit* to 
+work with the notebook.
+
+After that go back to the frontpage and try creating a new notebook.
+
+Design
+======
+
+Notebooks are made up of collections of cells.  These cells have input and 
+output boxes.  When a notebook is edited, an engine process is fired up on 
+the server.  When code cells are evaluated, they are sent to the server
+and the returned data is placed in the output.
+
+The cells and notebooks are exposed by a REST API that is hooked up to 
+backbone.js.  Cell evaluation is done via an an AJAX call.
+
+Engine processes are spawned by the engine server.  They start with an XML-RPC
+service that listens locally on a port.  The engineserver listens for 
+requests from browsers and dispatches them to the engine prcocess.
+
+The intention is for a registration process for engine servers so that the 
+engineserver can be from a different domain to the notebook server and 
+user provided.
+
+TODO
+====
+
+Rename notebook by clicking on the notebook title.
+
+Rewrite notebook list page to be a backbone view, and new notebook to be done 
+through the REST API.
+
+Engine processes are not killed by the engineserver due to the server ignoring
+interrupts.
+
+Spawner for new cells at the top of the notebook.
+
+Engine needs to fork the interpeter to allow interrupts via xmlrpc to a engine
+that is evaluating.
+
+Expose engine interrupt on notebook view.
+
+Notebook permissions model/share notebook view.
+
+Engine server escaping of interpreter output.
+
+Engine intepreter registration.
+
+Engine server registration by users.
+
+Engine environment for runtime configuration templates for engines.
+
+setup.py.
+
+Configuration system. 
+
+Script to wrap twistd invocation.
+
+Comments on notebooks or cells?
+
+Javascript minification.
+
+Use haml templates to generate template/*.html?
+
+Add in line wraps to calculation of ace height.
+
+Include ace mode to use in notebook mode.
+
+Eye candy for hiding/displaying text mode editors.
+
+Control buttons to save, play.
+
+Clone notebook operation
+
+Notebook versioning (hard with the current data model!)
+
+Notebook upboat/favourite.
+
+Completer frontend/backend code.
+
+Markdown mode for ace/Other text renderers.
+
+V8 engine.
+
+R engine.
+
+Haskell engine.
+
+Check fonts on linux/windows.
+
+Add ace decoration for line where error happened.
+
+Redis/nginx dynamic reverse proxy direct to engine process rather to replace
+engine server for production.
+
+svgs appended to bottom of page are never visible.
+
+
+
+
+
+
