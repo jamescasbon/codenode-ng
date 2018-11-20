@@ -39,7 +39,7 @@ the server.  When code cells are evaluated, they are sent to the server
 and the returned data is placed in the output.
 
 The cells and notebooks are exposed by a REST API that is hooked up to 
-backbone.js.  Cell evaluation is done via an an AJAX call.
+backbone.js.  Cell evaluation is done via an AJAX call.
 
 Engine processes are spawned by the engine server.  They start with an XML-RPC
 service that listens locally on a port.  The engineserver listens for 
